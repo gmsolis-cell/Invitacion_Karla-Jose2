@@ -1,0 +1,1919 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>José &amp; Karla — Invitación de Boda Civil</title>
+    <meta
+      name="description"
+      content="Invitación interactiva de Boda Civil para José &amp; Karla — Sábado 19 de Diciembre de 2026, 13:30 PM en Molino Del Puente, Cuenca. Video con música, cuenta regresiva, Google Maps y confirmación de asistencia."
+    />
+    <meta property="og:title" content="José &amp; Karla — Nuestra Boda Civil" />
+    <meta
+      property="og:description"
+      content="Sábado 19 de Diciembre de 2026 · 13:30 PM · Molino Del Puente, Cuenca. Mira el video con música, ubicación en Google Maps y confirma tu asistencia."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --taupe-paper: #8c785b;
+        --taupe-hover: #77654b;
+        --beige-btn: #efe7da;
+        --beige-btn-hover: #e5dbc9;
+        --beige-soft: #f6f0e6;
+        --beige-soft-hover: #ede4d4;
+        --espresso: #4f2a1d;
+        --espresso-band: #3b2016;
+        --ivory-card: #fdfbf7;
+        --gold-antique: #b89552;
+        --gold-bright: #e5c98b;
+        --ink-primary: #2d1e18;
+        --ink-body: #4b3a32;
+        --ink-muted: #6c594e;
+        --ink-btn: #423222;
+        --danger: #b91c1c;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+        background-color: #ffffff;
+        color: var(--ink-primary);
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      ::selection {
+        background-color: var(--espresso);
+        color: #ffffff;
+      }
+
+      button,
+      input,
+      textarea {
+        font-family: inherit;
+      }
+
+      .font-script {
+        font-family: 'Alex Brush', 'Brush Script MT', cursive;
+      }
+
+      .font-editorial {
+        font-family: 'Cormorant Garamond', Georgia, serif;
+      }
+
+      .tabular-nums-strict {
+        font-variant-numeric: tabular-nums;
+      }
+
+      .text-balance {
+        text-wrap: balance;
+      }
+
+      .page-shell {
+        position: relative;
+        min-height: 100vh;
+        overflow-x: hidden;
+        background-color: #ffffff;
+      }
+
+      .bottom-ambient-gradient {
+        pointer-events: none;
+        position: fixed;
+        inset-inline: 0;
+        bottom: 0;
+        z-index: 0;
+        height: 13rem;
+        background: linear-gradient(
+          to top,
+          rgba(58, 33, 23, 0.22),
+          rgba(140, 120, 91, 0.1) 50%,
+          transparent
+        );
+      }
+
+      #fireworks-canvas {
+        pointer-events: none;
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        width: 100%;
+        height: 100%;
+      }
+
+      .main-container {
+        position: relative;
+        z-index: 10;
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 1.25rem 1rem max(2.75rem, env(safe-area-inset-bottom));
+      }
+
+      .layout-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 1.5rem;
+      }
+
+      /* COLUMNA VIDEO */
+      .video-section {
+        position: relative;
+        z-index: 30;
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .video-frame-box {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        border: 2px solid rgba(140, 120, 91, 0.5);
+        background-color: var(--taupe-paper);
+        box-shadow: 0 24px 50px -12px rgba(45, 30, 24, 0.38);
+      }
+
+      .video-aspect {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        background-color: #7f6c51;
+      }
+
+      .video-element {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .video-bottom-scrim {
+        pointer-events: none;
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        z-index: 10;
+        height: 7rem;
+        background: linear-gradient(
+          to top,
+          rgba(31, 19, 14, 0.85),
+          rgba(45, 30, 24, 0.38) 55%,
+          transparent
+        );
+      }
+
+      .video-progress-bar {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 20;
+        padding: 1.5rem 1rem 0.75rem;
+      }
+
+      .video-progress-inner {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .video-time {
+        font-size: 11px;
+        font-weight: 500;
+        color: rgba(253, 251, 247, 0.95);
+      }
+
+      .video-time-total {
+        color: rgba(253, 251, 247, 0.8);
+      }
+
+      .scrubber-wrap {
+        position: relative;
+        display: flex;
+        flex: 1;
+        align-items: center;
+      }
+
+      .scrubber-track {
+        width: 100%;
+        height: 4px;
+        overflow: hidden;
+        border-radius: 9999px;
+        background-color: rgba(253, 251, 247, 0.25);
+      }
+
+      .scrubber-fill {
+        height: 100%;
+        width: 0%;
+        background-color: var(--gold-bright);
+        transition: width 150ms linear;
+      }
+
+      .scrubber-input {
+        position: absolute;
+        inset: -0.5rem 0;
+        width: 100%;
+        height: 2rem;
+        margin: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      /* TARJETA EN PAPEL ALGODÓN REALISTA */
+      .card-section {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 36rem;
+        margin: 0 auto;
+      }
+
+      .paper-cotton-surface {
+        background-color: #fdfcf9;
+        background-image:
+          radial-gradient(
+            ellipse at 20% 0%,
+            rgba(255, 255, 255, 0.92) 0%,
+            rgba(247, 243, 235, 0.38) 65%,
+            rgba(239, 232, 220, 0.45) 100%
+          ),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='cotton'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch' seed='11'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.56  0 0 0 0 0.49  0 0 0 0 0.41  0 0 0 0.085 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23cotton)'/%3E%3C/svg%3E");
+        background-repeat: no-repeat, repeat;
+        background-size: 100% 100%, 220px 220px;
+      }
+
+      .paper-card-elevation {
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.96),
+          inset 0 -1px 0 rgba(140, 120, 91, 0.14),
+          0 2px 6px rgba(45, 30, 24, 0.06),
+          0 14px 32px -10px rgba(45, 30, 24, 0.14),
+          0 32px 64px -20px rgba(45, 30, 24, 0.22);
+      }
+
+      .invitation-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        border: 1px solid rgba(140, 120, 91, 0.3);
+      }
+
+      .card-inner-frame {
+        pointer-events: none;
+        position: absolute;
+        inset: 0.625rem;
+        z-index: 10;
+        border-radius: 0.75rem;
+        border: 1px solid rgba(140, 120, 91, 0.16);
+      }
+
+      .card-body {
+        position: relative;
+        z-index: 20;
+        padding: 1.5rem;
+      }
+
+      .hero-block {
+        padding-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .hero-kicker {
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        color: var(--ink-muted);
+        text-transform: uppercase;
+      }
+
+      .letterpress-ink {
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
+      }
+
+      .couple-title {
+        margin: 0.75rem 0 0;
+        font-size: 3.1rem;
+        line-height: 1;
+        font-weight: 400;
+        color: var(--espresso);
+      }
+
+      .couple-quote {
+        margin: 1rem 0 0;
+        font-size: 1.125rem;
+        line-height: 1.625;
+        color: var(--ink-body);
+        font-style: italic;
+      }
+
+      .gold-foil-rule {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(184, 149, 82, 0.25) 18%,
+          rgba(184, 149, 82, 0.65) 50%,
+          rgba(184, 149, 82, 0.25) 82%,
+          transparent 100%
+        );
+      }
+
+      /* CUENTA REGRESIVA */
+      .countdown-block {
+        padding: 1.5rem 0;
+      }
+
+      .countdown-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .section-heading {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: 0.025em;
+        color: var(--espresso);
+      }
+
+      .date-code {
+        flex-shrink: 0;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--ink-muted);
+      }
+
+      .countdown-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.5rem;
+      }
+
+      .paper-insert-slip {
+        background-color: #fbf8f2;
+        background-image:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0%, rgba(244, 238, 227, 0.55) 100%),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='slip'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch' seed='23'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.52  0 0 0 0 0.44  0 0 0 0 0.34  0 0 0 0.075 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23slip)'/%3E%3C/svg%3E");
+        background-repeat: no-repeat, repeat;
+        background-size: 100% 100%, 160px 160px;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.95),
+          0 1px 3px rgba(45, 30, 24, 0.06);
+      }
+
+      .countdown-cell {
+        border-radius: 0.75rem;
+        border: 1px solid rgba(197, 155, 39, 0.35);
+        padding: 0.875rem 0.375rem;
+        text-align: center;
+      }
+
+      .countdown-number {
+        font-size: 26px;
+        line-height: 1;
+        font-weight: 600;
+        color: var(--espresso);
+      }
+
+      .countdown-label {
+        margin-top: 0.375rem;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        color: var(--ink-muted);
+        text-transform: uppercase;
+      }
+
+      /* BOTONES DE ACCIÓN EN BEIGE DEL VIDEO */
+      .actions-block {
+        padding: 1.5rem 0;
+      }
+
+      .actions-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .btn-base {
+        touch-action: manipulation;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        min-height: 50px;
+        padding: 0.75rem 1rem;
+        border-radius: 0.75rem;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: background-color 150ms ease, transform 150ms ease;
+      }
+
+      .btn-base:active {
+        transform: scale(0.985);
+      }
+
+      .btn-base:focus-visible {
+        outline: 2px solid var(--taupe-paper);
+        outline-offset: 2px;
+      }
+
+      .btn-taupe {
+        border: none;
+        background-color: var(--taupe-paper);
+        color: var(--ivory-card);
+        box-shadow: 0 4px 12px rgba(79, 42, 29, 0.22);
+      }
+
+      .btn-taupe:hover {
+        background-color: var(--taupe-hover);
+      }
+
+      .btn-beige {
+        border: 1px solid rgba(140, 120, 91, 0.55);
+        background-color: var(--beige-btn);
+        color: var(--ink-btn);
+        box-shadow: 0 2px 8px rgba(79, 42, 29, 0.08);
+      }
+
+      .btn-beige:hover {
+        background-color: var(--beige-btn-hover);
+      }
+
+      .saved-rsvp-banner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
+        border-radius: 0.75rem;
+        border: 1px solid rgba(140, 120, 91, 0.4);
+        font-size: 0.75rem;
+        color: var(--ink-primary);
+      }
+
+      .saved-rsvp-banner[hidden] {
+        display: none;
+      }
+
+      .saved-rsvp-info {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+      }
+
+      .edit-rsvp-btn {
+        touch-action: manipulation;
+        min-height: 36px;
+        padding: 0 0.25rem;
+        border: none;
+        background: transparent;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #6d5b42;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      .calendar-trigger-wrap {
+        margin-top: 0.75rem;
+      }
+
+      .btn-calendar {
+        touch-action: manipulation;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-height: 44px;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid rgba(140, 120, 91, 0.4);
+        background-color: var(--beige-soft);
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #5c4b36;
+        cursor: pointer;
+        transition: background-color 150ms ease, transform 150ms ease;
+      }
+
+      .btn-calendar:hover {
+        background-color: var(--beige-soft-hover);
+      }
+
+      .btn-calendar:active {
+        transform: scale(0.985);
+      }
+
+      /* DETALLES DE CELEBRACIÓN */
+      .details-block {
+        padding-top: 1.5rem;
+      }
+
+      .details-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+        font-size: 0.875rem;
+        color: var(--ink-body);
+      }
+
+      .detail-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .detail-icon {
+        flex-shrink: 0;
+        margin-top: 0.125rem;
+        color: #b8860b;
+      }
+
+      .detail-title {
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+
+      .detail-sub {
+        margin: 0.125rem 0 0;
+        font-size: 0.75rem;
+        line-height: 1.6;
+        color: var(--ink-muted);
+      }
+
+      /* FRANJA INFERIOR EN CARTULINA ESPRESSO */
+      .paper-espresso-band {
+        position: relative;
+        z-index: 20;
+        border-top: 1px solid rgba(197, 155, 39, 0.35);
+        padding: 1.25rem 1.5rem;
+        text-align: center;
+        background-color: var(--espresso-band);
+        background-image:
+          linear-gradient(180deg, rgba(45, 23, 15, 0.45) 0%, rgba(59, 32, 22, 0.1) 50%, rgba(31, 16, 11, 0.55) 100%),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='darkpaper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch' seed='7'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.96  0 0 0 0 0.90  0 0 0 0 0.80  0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23darkpaper)'/%3E%3C/svg%3E");
+        background-repeat: no-repeat, repeat;
+        background-size: 100% 100%, 180px 180px;
+      }
+
+      .closing-quote {
+        margin: 0;
+        font-size: 1.125rem;
+        line-height: 1.55;
+        color: var(--ivory-card);
+        font-style: italic;
+      }
+
+      /* MODALES */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 0;
+        background-color: rgba(45, 30, 24, 0.6);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+      }
+
+      .modal-backdrop[hidden] {
+        display: none;
+      }
+
+      .modal-sheet {
+        width: 100%;
+        max-width: 28rem;
+        border-radius: 1.5rem 1.5rem 0 0;
+        border: 1px solid rgba(197, 155, 39, 0.35);
+        padding: 1.5rem 1.5rem max(1.5rem, env(safe-area-inset-bottom));
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+
+      .modal-sheet--narrow {
+        max-width: 24rem;
+      }
+
+      .sheet-handle {
+        width: 2.5rem;
+        height: 0.375rem;
+        margin: 0 auto 0.75rem;
+        border-radius: 9999px;
+        background-color: rgba(79, 42, 29, 0.2);
+      }
+
+      .modal-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .modal-title {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--espresso);
+      }
+
+      .modal-subtitle {
+        margin: 0.25rem 0 0;
+        font-size: 0.75rem;
+        color: var(--ink-muted);
+      }
+
+      .modal-close-btn {
+        touch-action: manipulation;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        min-height: 44px;
+        border: none;
+        border-radius: 0.5rem;
+        background: transparent;
+        color: var(--ink-muted);
+        cursor: pointer;
+      }
+
+      .modal-close-btn:hover {
+        background-color: #f4f2ed;
+        color: var(--ink-primary);
+      }
+
+      .rsvp-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1.25rem;
+      }
+
+      .field-label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+
+      .field-input,
+      .field-textarea {
+        display: block;
+        width: 100%;
+        margin-top: 0.375rem;
+        padding: 0.625rem 0.875rem;
+        border-radius: 0.75rem;
+        border: 1px solid rgba(79, 42, 29, 0.2);
+        background-color: var(--ivory-card);
+        font-size: 1rem;
+        color: var(--ink-primary);
+      }
+
+      .field-input {
+        min-height: 46px;
+      }
+
+      .field-input::placeholder,
+      .field-textarea::placeholder {
+        color: rgba(108, 89, 78, 0.6);
+      }
+
+      .field-input:focus,
+      .field-textarea:focus {
+        outline: none;
+        border-color: var(--taupe-paper);
+      }
+
+      .field-input.is-invalid {
+        border-color: var(--danger);
+      }
+
+      .field-error {
+        margin: 0.375rem 0 0;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--danger);
+      }
+
+      .field-error[hidden] {
+        display: none;
+      }
+
+      .attending-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.625rem;
+        margin-top: 0.375rem;
+      }
+
+      .attending-btn {
+        touch-action: manipulation;
+        min-height: 44px;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.75rem;
+        border: 1px solid rgba(140, 120, 91, 0.35);
+        background-color: var(--beige-soft);
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #5c4b36;
+        cursor: pointer;
+        transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+      }
+
+      .attending-btn.is-active {
+        border-color: var(--taupe-paper);
+        background-color: var(--taupe-paper);
+        color: var(--ivory-card);
+      }
+
+      .calendar-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+        margin-top: 1.25rem;
+      }
+
+      /* TOAST */
+      .toast {
+        position: fixed;
+        bottom: 1.5rem;
+        left: 50%;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        max-width: calc(100vw - 2rem);
+        padding: 0.625rem 1rem;
+        transform: translateX(-50%);
+        border-radius: 0.75rem;
+        border: 1px solid rgba(197, 155, 39, 0.5);
+        background-color: var(--ink-primary);
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--ivory-card);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+      }
+
+      .toast[hidden] {
+        display: none;
+      }
+
+      .toast-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* RESPONSIVE DESKTOP & TABLET */
+      @media (min-width: 640px) {
+        .main-container {
+          padding: 1.5rem 1.5rem 3rem;
+        }
+        .card-inner-frame {
+          inset: 0.875rem;
+        }
+        .card-body {
+          padding: 2rem;
+        }
+        .couple-title {
+          font-size: 3.75rem;
+        }
+        .couple-quote {
+          font-size: 1.25rem;
+        }
+        .countdown-grid {
+          gap: 1rem;
+        }
+        .countdown-cell {
+          padding: 1rem 0.5rem;
+        }
+        .countdown-number {
+          font-size: 2.25rem;
+        }
+        .countdown-label {
+          font-size: 11px;
+          letter-spacing: 0.08em;
+        }
+        .actions-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .btn-base {
+          padding: 0.75rem 1.25rem;
+          font-size: 0.875rem;
+        }
+        .paper-espresso-band {
+          padding: 1.25rem 2rem;
+        }
+        .modal-backdrop {
+          align-items: center;
+          padding: 1rem;
+        }
+        .modal-sheet {
+          border-radius: 1rem;
+          padding-bottom: 1.5rem;
+        }
+        .sheet-handle {
+          display: none;
+        }
+        .field-input,
+        .field-textarea {
+          font-size: 0.875rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .main-container {
+          padding-top: 3rem;
+          padding-bottom: 3rem;
+        }
+        .layout-grid {
+          grid-template-columns: minmax(360px, 420px) 1fr;
+          gap: 2.5rem;
+        }
+        .video-section {
+          position: sticky;
+          top: 2rem;
+        }
+        .card-section {
+          max-width: none;
+        }
+        .card-body {
+          padding: 2.5rem;
+        }
+        .hero-block {
+          text-align: left;
+        }
+        .paper-espresso-band {
+          padding: 1.25rem 2.5rem;
+          text-align: left;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="bottom-ambient-gradient" aria-hidden="true"></div>
+      <canvas id="fireworks-canvas" aria-hidden="true"></canvas>
+
+      <main class="main-container">
+        <div class="layout-grid">
+          <!-- COLUMNA IZQUIERDA: VIDEO INTERACTIVO CON MÚSICA -->
+          <section id="video-invitacion" class="video-section">
+            <div id="video-frame-box" class="video-frame-box">
+              <div class="video-aspect">
+                <video
+                  id="invitation-video"
+                  class="video-element"
+                  autoplay
+                  playsinline
+                  loop
+                  preload="auto"
+                ></video>
+
+                <div class="video-bottom-scrim" aria-hidden="true"></div>
+
+                <div class="video-progress-bar">
+                  <div class="video-progress-inner">
+                    <span id="time-current" class="video-time tabular-nums-strict">0:00</span>
+                    <div class="scrubber-wrap">
+                      <div class="scrubber-track">
+                        <div id="scrubber-fill" class="scrubber-fill"></div>
+                      </div>
+                      <input
+                        id="video-scrubber"
+                        type="range"
+                        min="0"
+                        max="26.3"
+                        step="0.1"
+                        value="0"
+                        aria-label="Progreso del video"
+                        class="scrubber-input"
+                      />
+                    </div>
+                    <span id="time-total" class="video-time video-time-total tabular-nums-strict">0:26</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- COLUMNA DERECHA: TARJETA EN PAPEL ALGODÓN TEXTURIZADO -->
+          <section class="card-section">
+            <div class="paper-cotton-surface paper-card-elevation invitation-card">
+              <div class="card-inner-frame" aria-hidden="true"></div>
+
+              <div class="card-body">
+                <div class="hero-block">
+                  <div class="hero-kicker">NUESTRA BODA CIVIL</div>
+                  <h1 class="font-script letterpress-ink text-balance couple-title">
+                    José &amp; Karla
+                  </h1>
+                  <p class="font-editorial couple-quote">
+                    Con la certeza de haber encontrado nuestro hogar el uno en el otro, tenemos el honor de invitarte a celebrar nuestra boda civil.
+                  </p>
+                </div>
+
+                <div class="gold-foil-rule" aria-hidden="true"></div>
+
+                <div id="cuenta-regresiva" class="countdown-block">
+                  <div class="countdown-header">
+                    <h2 id="countdown-heading" class="font-editorial text-balance section-heading">
+                      Cuenta regresiva para el gran día
+                    </h2>
+                    <span class="tabular-nums-strict date-code">19 · 12 · 26</span>
+                  </div>
+
+                  <div class="countdown-grid">
+                    <div class="paper-insert-slip countdown-cell">
+                      <div id="cd-days" class="font-editorial letterpress-ink tabular-nums-strict countdown-number">00</div>
+                      <div class="countdown-label">Días</div>
+                    </div>
+                    <div class="paper-insert-slip countdown-cell">
+                      <div id="cd-hours" class="font-editorial letterpress-ink tabular-nums-strict countdown-number">00</div>
+                      <div class="countdown-label">Horas</div>
+                    </div>
+                    <div class="paper-insert-slip countdown-cell">
+                      <div id="cd-minutes" class="font-editorial letterpress-ink tabular-nums-strict countdown-number">00</div>
+                      <div class="countdown-label">Minutos</div>
+                    </div>
+                    <div class="paper-insert-slip countdown-cell">
+                      <div id="cd-seconds" class="font-editorial letterpress-ink tabular-nums-strict countdown-number">00</div>
+                      <div class="countdown-label">Segundos</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="gold-foil-rule" aria-hidden="true"></div>
+
+                <div id="ubicacion" class="actions-block">
+                  <div class="actions-grid">
+                    <a
+                      href="https://maps.app.goo.gl/4YSEve9WCgkCeNYaA"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="btn-base btn-taupe"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f5ecd9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                      <span>Ver Dirección en Google Maps</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.8">
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14 21 3"></path>
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      </svg>
+                    </a>
+
+                    <button id="open-rsvp-btn" type="button" class="btn-base btn-beige">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8c785b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="m9 12 2 2 4-4"></path>
+                      </svg>
+                      <span id="open-rsvp-label">Confirmar Asistencia</span>
+                    </button>
+                  </div>
+
+                  <div id="saved-rsvp-banner" class="paper-insert-slip saved-rsvp-banner" hidden>
+                    <div class="saved-rsvp-info">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8c785b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">
+                        <path d="M20 6 9 17l-5-5"></path>
+                      </svg>
+                      <span id="saved-rsvp-text"></span>
+                    </div>
+                    <button id="edit-rsvp-btn" type="button" class="edit-rsvp-btn">Editar</button>
+                  </div>
+
+                  <div class="calendar-trigger-wrap">
+                    <button id="open-calendar-btn" type="button" class="btn-calendar">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8c785b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M8 2v4"></path>
+                        <path d="M16 2v4"></path>
+                        <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                        <path d="M3 10h18"></path>
+                        <path d="M10 16h4"></path>
+                        <path d="M12 14v4"></path>
+                      </svg>
+                      <span>Agregar al calendario</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="gold-foil-rule" aria-hidden="true"></div>
+
+                <div id="itinerario" class="details-block">
+                  <h2 class="font-editorial text-balance section-heading">Detalles de la Celebración</h2>
+
+                  <div class="details-list">
+                    <div class="detail-row">
+                      <svg class="detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                      <div>
+                        <div class="detail-title">Ceremonia — Molino Del Puente</div>
+                        <p class="detail-sub">
+                          Km 14 ½ Vía Cuenca – Molleturo (camino al Parque Nacional Cajas), Cuenca, Azuay, Ecuador.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="detail-row">
+                      <svg class="detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                      </svg>
+                      <div>
+                        <div class="detail-title">Recepción — 13:30 PM</div>
+                        <p class="detail-sub">Salón Rosa Bella · Sábado 19 de Diciembre 2026</p>
+                      </div>
+                    </div>
+
+                    <div class="detail-row">
+                      <svg class="detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path>
+                      </svg>
+                      <div>
+                        <div class="detail-title">Código de Vestimenta</div>
+                        <p class="detail-sub">Formal</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="paper-espresso-band">
+                <p class="font-editorial closing-quote">
+                  Los momentos más felices de la vida se disfrutan más junto a quienes queremos. ¡Te esperamos!
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!-- MODAL CONFIRMACIÓN DE ASISTENCIA -->
+      <div id="rsvp-modal" class="modal-backdrop" hidden>
+        <div class="paper-cotton-surface modal-sheet">
+          <div class="sheet-handle"></div>
+          <div class="modal-header">
+            <div>
+              <h3 class="font-editorial modal-title">Confirmar Asistencia</h3>
+              <p class="modal-subtitle">Sábado 19 de Diciembre 2026 · 13:30 PM · Molino Del Puente</p>
+            </div>
+            <button id="close-rsvp-btn" type="button" class="modal-close-btn" aria-label="Cerrar ventana">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 6 6 18"></path>
+                <path d="m6 6 12 12"></path>
+              </svg>
+            </button>
+          </div>
+
+          <form id="rsvp-form" class="rsvp-form" novalidate>
+            <div>
+              <label for="guest-name" class="field-label">Nombre completo</label>
+              <input
+                id="guest-name"
+                type="text"
+                required
+                placeholder="Ej. María Fernanda Torres"
+                class="field-input"
+              />
+              <p id="name-error" role="alert" class="field-error" hidden>
+                Por favor escribe tu nombre antes de confirmar por WhatsApp.
+              </p>
+            </div>
+
+            <div>
+              <span class="field-label">¿Nos acompañarás?</span>
+              <div class="attending-grid">
+                <button id="attend-yes-btn" type="button" class="attending-btn is-active">
+                  Sí, asistiré
+                </button>
+                <button id="attend-no-btn" type="button" class="attending-btn">
+                  No podré asistir
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label for="guest-note" class="field-label">Mensaje para los novios (opcional)</label>
+              <textarea
+                id="guest-note"
+                rows="2"
+                placeholder="¡Muchas felicidades José y Karla!"
+                class="field-textarea"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn-base btn-taupe">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f5ecd9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+              </svg>
+              <span>Confirmar Asistencia por WhatsApp</span>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- MODAL AGREGAR AL CALENDARIO -->
+      <div id="calendar-modal" class="modal-backdrop" hidden>
+        <div class="paper-cotton-surface modal-sheet modal-sheet--narrow">
+          <div class="sheet-handle"></div>
+          <div class="modal-header">
+            <div>
+              <h3 class="font-editorial modal-title">Guardar Fecha</h3>
+              <p class="modal-subtitle">Sábado 19 de Diciembre de 2026 · 13:30 PM</p>
+            </div>
+            <button id="close-calendar-btn" type="button" class="modal-close-btn" aria-label="Cerrar calendario">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 6 6 18"></path>
+                <path d="m6 6 12 12"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="calendar-actions">
+            <a
+              id="google-calendar-link"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-base btn-beige"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8c785b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 2v4"></path>
+                <path d="M16 2v4"></path>
+                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                <path d="M3 10h18"></path>
+                <path d="M10 16h4"></path>
+                <path d="M12 14v4"></path>
+              </svg>
+              <span>Google Calendar</span>
+            </a>
+
+            <button id="download-ics-btn" type="button" class="btn-base btn-taupe">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f5ecd9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" x2="12" y1="15" y2="3"></line>
+              </svg>
+              <span>Descargar archivo .ics (Apple / Outlook)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOAST -->
+      <div id="toast" role="status" class="toast" hidden>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e5c98b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">
+          <path d="M20 6 9 17l-5-5"></path>
+        </svg>
+        <span id="toast-text" class="toast-text"></span>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var VIDEO_FILENAME =
+          'Video_para_dispositivos_m_viles_minimalista_invitaci_n_animada_para_boda_save_the_date_en_color_caf___beige_y_blanco_b2f926ee.mp4';
+        var VIDEO_CANDIDATES = [
+          './assets/aistudio/' + VIDEO_FILENAME,
+          './public/assets/aistudio/' + VIDEO_FILENAME,
+          'https://ais-pre-tyuxleg6y6y6twywzpxvj6-875601563663.us-east1.run.app/assets/aistudio/' +
+            VIDEO_FILENAME,
+        ];
+        var GOOGLE_MAPS_URL = 'https://maps.app.goo.gl/4YSEve9WCgkCeNYaA';
+        var WHATSAPP_PHONE = '593963296255';
+        var WEDDING_TARGET_ISO = '2026-12-19T13:30:00-05:00';
+        var RSVP_STORAGE_KEY = 'jk_wedding_rsvp_v2';
+
+        var video = document.getElementById('invitation-video');
+        var videoFrameBox = document.getElementById('video-frame-box');
+        var timeCurrent = document.getElementById('time-current');
+        var timeTotal = document.getElementById('time-total');
+        var scrubberFill = document.getElementById('scrubber-fill');
+        var videoScrubber = document.getElementById('video-scrubber');
+
+        var cdHeading = document.getElementById('countdown-heading');
+        var cdDays = document.getElementById('cd-days');
+        var cdHours = document.getElementById('cd-hours');
+        var cdMinutes = document.getElementById('cd-minutes');
+        var cdSeconds = document.getElementById('cd-seconds');
+
+        var openRsvpBtn = document.getElementById('open-rsvp-btn');
+        var openRsvpLabel = document.getElementById('open-rsvp-label');
+        var savedBanner = document.getElementById('saved-rsvp-banner');
+        var savedBannerText = document.getElementById('saved-rsvp-text');
+        var editRsvpBtn = document.getElementById('edit-rsvp-btn');
+
+        var rsvpModal = document.getElementById('rsvp-modal');
+        var closeRsvpBtn = document.getElementById('close-rsvp-btn');
+        var rsvpForm = document.getElementById('rsvp-form');
+        var guestNameInput = document.getElementById('guest-name');
+        var nameErrorEl = document.getElementById('name-error');
+        var attendYesBtn = document.getElementById('attend-yes-btn');
+        var attendNoBtn = document.getElementById('attend-no-btn');
+        var guestNoteInput = document.getElementById('guest-note');
+
+        var openCalendarBtn = document.getElementById('open-calendar-btn');
+        var calendarModal = document.getElementById('calendar-modal');
+        var closeCalendarBtn = document.getElementById('close-calendar-btn');
+        var googleCalendarLink = document.getElementById('google-calendar-link');
+        var downloadIcsBtn = document.getElementById('download-ics-btn');
+
+        var toastEl = document.getElementById('toast');
+        var toastTextEl = document.getElementById('toast-text');
+        var toastTimer = null;
+
+        var autoMutedByPolicy = false;
+        var duration = 26.3;
+        var attending = 'yes';
+        var fireworkTrigger = 0;
+
+        function padTwo(val) {
+          return val < 10 ? '0' + val : String(val);
+        }
+
+        function formatTime(sec) {
+          if (!isFinite(sec) || sec < 0) return '0:00';
+          var mins = Math.floor(sec / 60);
+          var secs = Math.floor(sec % 60);
+          return mins + ':' + (secs < 10 ? '0' : '') + secs;
+        }
+
+        function showToast(msg) {
+          toastTextEl.textContent = msg;
+          toastEl.hidden = false;
+          if (toastTimer) clearTimeout(toastTimer);
+          toastTimer = setTimeout(function () {
+            toastEl.hidden = true;
+          }, 3200);
+        }
+
+        /* CARGA INTELIGENTE Y REPRODUCCIÓN CONTINUA DE VIDEO Y MÚSICA */
+        var videoSourceIndex = 0;
+        function loadVideoCandidate(idx) {
+          if (idx >= VIDEO_CANDIDATES.length) return;
+          videoSourceIndex = idx;
+          video.src = VIDEO_CANDIDATES[idx];
+          video.load();
+        }
+
+        function startPlaybackOnEntry() {
+          video.muted = false;
+          var playPromise = video.play();
+          if (playPromise && typeof playPromise.then === 'function') {
+            playPromise
+              .then(function () {
+                autoMutedByPolicy = false;
+              })
+              .catch(function () {
+                video.muted = true;
+                var mutedPromise = video.play();
+                if (mutedPromise && typeof mutedPromise.then === 'function') {
+                  mutedPromise
+                    .then(function () {
+                      autoMutedByPolicy = true;
+                    })
+                    .catch(function () {});
+                }
+              });
+          }
+        }
+
+        video.addEventListener('error', function () {
+          if (videoSourceIndex + 1 < VIDEO_CANDIDATES.length) {
+            loadVideoCandidate(videoSourceIndex + 1);
+            startPlaybackOnEntry();
+          }
+        });
+
+        loadVideoCandidate(0);
+        startPlaybackOnEntry();
+
+        function ensureMusicPlaying() {
+          if (autoMutedByPolicy || video.muted) {
+            video.muted = false;
+            autoMutedByPolicy = false;
+          }
+          if (video.paused) {
+            video.play().catch(function () {});
+          }
+        }
+
+        ['pointerdown', 'touchstart', 'click', 'keydown'].forEach(function (evtName) {
+          window.addEventListener(evtName, ensureMusicPlaying, { passive: true });
+        });
+
+        document.addEventListener('visibilitychange', function () {
+          if (document.visibilityState === 'visible' && video.paused) {
+            video.play().catch(function () {});
+          }
+        });
+
+        video.addEventListener('ended', function () {
+          video.currentTime = 0;
+          video.play().catch(function () {});
+        });
+
+        video.addEventListener('loadedmetadata', function () {
+          if (video.duration && isFinite(video.duration)) {
+            duration = video.duration;
+            videoScrubber.max = String(duration);
+            timeTotal.textContent = formatTime(duration);
+          }
+        });
+
+        video.addEventListener('timeupdate', function () {
+          var ct = video.currentTime || 0;
+          timeCurrent.textContent = formatTime(ct);
+          videoScrubber.value = String(ct);
+          var pct = duration > 0 ? Math.min(100, (ct / duration) * 100) : 0;
+          scrubberFill.style.width = pct + '%';
+        });
+
+        videoScrubber.addEventListener('input', function (e) {
+          var nextTime = Number(e.target.value);
+          video.currentTime = nextTime;
+          var pct = duration > 0 ? Math.min(100, (nextTime / duration) * 100) : 0;
+          scrubberFill.style.width = pct + '%';
+          timeCurrent.textContent = formatTime(nextTime);
+        });
+
+        /* CUENTA REGRESIVA EN TIEMPO REAL */
+        var targetMs = new Date(WEDDING_TARGET_ISO).getTime();
+        function updateCountdown() {
+          var diff = targetMs - Date.now();
+          if (diff <= 0) {
+            cdDays.textContent = '00';
+            cdHours.textContent = '00';
+            cdMinutes.textContent = '00';
+            cdSeconds.textContent = '00';
+            cdHeading.textContent = '¡Hoy celebramos nuestro amor!';
+            return;
+          }
+          var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+          cdDays.textContent = padTwo(days);
+          cdHours.textContent = padTwo(hours);
+          cdMinutes.textContent = padTwo(minutes);
+          cdSeconds.textContent = padTwo(seconds);
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        /* CONFIRMACIÓN DE ASISTENCIA POR WHATSAPP */
+        function setAttendingState(val) {
+          attending = val;
+          attendYesBtn.classList.toggle('is-active', val === 'yes');
+          attendNoBtn.classList.toggle('is-active', val === 'no');
+        }
+
+        function renderSavedRsvp(record) {
+          if (!record || !record.name) {
+            savedBanner.hidden = true;
+            openRsvpLabel.textContent = 'Confirmar Asistencia';
+            return;
+          }
+          savedBannerText.innerHTML = '';
+          var strong = document.createElement('strong');
+          strong.textContent = record.name;
+          savedBannerText.appendChild(strong);
+          savedBannerText.appendChild(
+            document.createTextNode(
+              ': ' +
+                (record.attending === 'yes'
+                  ? 'Asistencia confirmada'
+                  : 'Indicaste que no podrás asistir')
+            )
+          );
+          savedBanner.hidden = false;
+          openRsvpLabel.textContent = 'Actualizar Asistencia';
+        }
+
+        try {
+          var rawRsvp = localStorage.getItem(RSVP_STORAGE_KEY);
+          if (rawRsvp) {
+            var parsedRsvp = JSON.parse(rawRsvp);
+            if (parsedRsvp && parsedRsvp.name) {
+              guestNameInput.value = parsedRsvp.name;
+              setAttendingState(parsedRsvp.attending === 'no' ? 'no' : 'yes');
+              guestNoteInput.value = parsedRsvp.note || '';
+              renderSavedRsvp(parsedRsvp);
+            }
+          }
+        } catch (err) {
+          /* Ignorar si localStorage no está disponible */
+        }
+
+        function openRsvpModal() {
+          rsvpModal.hidden = false;
+        }
+        function closeRsvpModal() {
+          rsvpModal.hidden = true;
+        }
+
+        openRsvpBtn.addEventListener('click', openRsvpModal);
+        editRsvpBtn.addEventListener('click', openRsvpModal);
+        closeRsvpBtn.addEventListener('click', closeRsvpModal);
+        rsvpModal.addEventListener('click', function (e) {
+          if (e.target === rsvpModal) closeRsvpModal();
+        });
+
+        attendYesBtn.addEventListener('click', function () {
+          setAttendingState('yes');
+        });
+        attendNoBtn.addEventListener('click', function () {
+          setAttendingState('no');
+        });
+
+        guestNameInput.addEventListener('input', function () {
+          if (guestNameInput.value.trim()) {
+            nameErrorEl.hidden = true;
+            guestNameInput.classList.remove('is-invalid');
+            guestNameInput.setAttribute('aria-invalid', 'false');
+          }
+        });
+
+        rsvpForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var cleanName = guestNameInput.value.trim();
+          if (!cleanName) {
+            nameErrorEl.hidden = false;
+            guestNameInput.classList.add('is-invalid');
+            guestNameInput.setAttribute('aria-invalid', 'true');
+            showToast('Escribe tu nombre completo para confirmar');
+            guestNameInput.focus();
+            return;
+          }
+
+          nameErrorEl.hidden = true;
+          guestNameInput.classList.remove('is-invalid');
+          guestNameInput.setAttribute('aria-invalid', 'false');
+
+          var cleanNote = guestNoteInput.value.trim();
+          var record = {
+            name: cleanName,
+            attending: attending,
+            note: cleanNote,
+            submittedAt: new Date().toISOString(),
+          };
+
+          try {
+            localStorage.setItem(RSVP_STORAGE_KEY, JSON.stringify(record));
+          } catch (err) {
+            /* Ignorar si localStorage no está disponible */
+          }
+          renderSavedRsvp(record);
+          fireworkTrigger += 1;
+
+          var statusLine =
+            attending === 'yes'
+              ? '¡Hola José y Karla! Soy ' +
+                cleanName +
+                ' y confirmo mi asistencia a su boda el Sábado 19 de Diciembre de 2026.'
+              : '¡Hola José y Karla! Soy ' +
+                cleanName +
+                '. Lamentablemente no podré acompañarles el 19 de Diciembre de 2026, pero les envío mis mejores deseos.';
+
+          var fullMessage = cleanNote ? statusLine + ' Nota: ' + cleanNote : statusLine;
+          var waUrl = 'https://wa.me/' + WHATSAPP_PHONE + '?text=' + encodeURIComponent(fullMessage);
+
+          var waLink = document.createElement('a');
+          waLink.href = waUrl;
+          waLink.target = '_blank';
+          waLink.rel = 'noopener noreferrer';
+          document.body.appendChild(waLink);
+          waLink.click();
+          document.body.removeChild(waLink);
+          closeRsvpModal();
+          showToast('Confirmación lista en WhatsApp');
+        });
+
+        /* CALENDARIO */
+        var googleCalendarUrl =
+          'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+          '&text=' +
+          encodeURIComponent('Boda — José & Karla') +
+          '&dates=20261219T183000Z%2F20261220T030000Z' +
+          '&details=' +
+          encodeURIComponent(
+            'Ceremonia en Molino Del Puente y Recepción en Salón Rosa Bella (13:30 PM). Vestimenta: Formal. Mapa: ' +
+              GOOGLE_MAPS_URL
+          ) +
+          '&location=' +
+          encodeURIComponent('Molino Del Puente, Km 14 ½ Vía Cuenca – Molleturo, Cuenca, Ecuador');
+
+        googleCalendarLink.href = googleCalendarUrl;
+
+        openCalendarBtn.addEventListener('click', function () {
+          calendarModal.hidden = false;
+        });
+        closeCalendarBtn.addEventListener('click', function () {
+          calendarModal.hidden = true;
+        });
+        calendarModal.addEventListener('click', function (e) {
+          if (e.target === calendarModal) calendarModal.hidden = true;
+        });
+        googleCalendarLink.addEventListener('click', function () {
+          calendarModal.hidden = true;
+        });
+
+        downloadIcsBtn.addEventListener('click', function () {
+          var icsContent = [
+            'BEGIN:VCALENDAR',
+            'VERSION:2.0',
+            'PRODID:-//Jose y Karla//Boda//ES',
+            'CALSCALE:GREGORIAN',
+            'METHOD:PUBLISH',
+            'BEGIN:VEVENT',
+            'UID:boda-jose-karla-20261219@invitacion',
+            'DTSTAMP:20261116T000000Z',
+            'DTSTART:20261219T183000Z',
+            'DTEND:20261220T030000Z',
+            'SUMMARY:Boda — José & Karla',
+            'DESCRIPTION:Ceremonia en Molino Del Puente y Recepción en Salón Rosa Bella (13:30 PM). Código de vestimenta: Formal.',
+            'LOCATION:Molino Del Puente, Km 14 1/2 Vía Cuenca - Molleturo, Cuenca, Ecuador',
+            'URL:' + GOOGLE_MAPS_URL,
+            'STATUS:CONFIRMED',
+            'END:VEVENT',
+            'END:VCALENDAR',
+          ].join('\r\n');
+
+          var blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement('a');
+          a.href = url;
+          a.download = 'Boda-Jose-y-Karla-19-Dic-2026.ics';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          calendarModal.hidden = true;
+          showToast('Evento guardado (.ics)');
+        });
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            closeRsvpModal();
+            calendarModal.hidden = true;
+          }
+        });
+
+        /* FUEGOS ARTIFICIALES EN DORADO BRILLANTE (J -> K -> CORAZÓN CADA 6s + CLÁSICOS LENTOS) */
+        (function initFireworks() {
+          var canvas = document.getElementById('fireworks-canvas');
+          if (!canvas) return;
+          var ctx = canvas.getContext('2d');
+          if (!ctx) return;
+
+          if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+          }
+
+          var GOLD_PALETTE = ['#ffd000', '#ffb703', '#f5b800', '#ffe066', '#e6a817', '#ffc933'];
+          var width = window.innerWidth;
+          var height = window.innerHeight;
+          var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+          function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          }
+          resize();
+          window.addEventListener('resize', resize);
+
+          function sampleQuadBezier(x0, y0, cx, cy, x1, y1, steps) {
+            var pts = [];
+            for (var i = 0; i <= steps; i++) {
+              var t = i / steps;
+              var inv = 1 - t;
+              pts.push({
+                x: inv * inv * x0 + 2 * inv * t * cx + t * t * x1,
+                y: inv * inv * y0 + 2 * inv * t * cy + t * t * y1,
+              });
+            }
+            return pts;
+          }
+
+          function getShapeOffsets(kind) {
+            if (kind === 'heart') {
+              var pts = [];
+              var total = 44;
+              for (var i = 0; i < total; i++) {
+                var t = (Math.PI * 2 * i) / total;
+                var hx = 16 * Math.pow(Math.sin(t), 3);
+                var hy = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+                pts.push({ x: hx / 16, y: hy / 16 });
+              }
+              return pts;
+            }
+            if (kind === 'letterJ') {
+              return [].concat(
+                sampleQuadBezier(-0.08, -0.56, 0.24, -0.96, 0.42, -0.78, 10),
+                sampleQuadBezier(0.42, -0.78, 0.24, -0.08, 0.04, 0.62, 16),
+                sampleQuadBezier(0.04, 0.62, -0.28, 0.98, -0.44, 0.56, 12),
+                sampleQuadBezier(-0.44, 0.56, -0.34, 0.22, 0.34, -0.06, 12)
+              );
+            }
+            return [].concat(
+              sampleQuadBezier(-0.56, -0.68, -0.34, -0.94, -0.26, -0.72, 8),
+              sampleQuadBezier(-0.26, -0.72, -0.34, 0.08, -0.46, 0.86, 16),
+              sampleQuadBezier(-0.46, 0.86, -0.58, 0.9, -0.64, 0.78, 5),
+              sampleQuadBezier(0.32, -0.88, 0.52, -0.94, 0.44, -0.78, 6),
+              sampleQuadBezier(0.44, -0.78, 0.06, -0.42, -0.28, 0.04, 14),
+              sampleQuadBezier(-0.22, -0.02, 0.14, 0.22, 0.28, 0.72, 12),
+              sampleQuadBezier(0.28, 0.72, 0.42, 0.94, 0.64, 0.74, 8)
+            );
+          }
+
+          var rockets = [];
+          var sparks = [];
+          var shapeSequence = ['letterJ', 'letterK', 'heart'];
+          var shapeIndex = 0;
+
+          function createBurst(cx, cy, kind) {
+            if (kind !== 'classic') {
+              var shapePts = getShapeOffsets(kind);
+              var radius = width >= 640 ? 54 : 38;
+              var velocityScale = radius * 0.06;
+              for (var i = 0; i < shapePts.length; i++) {
+                var pt = shapePts[i];
+                sparks.push({
+                  x: cx,
+                  y: cy,
+                  prevX: cx,
+                  prevY: cy,
+                  vx: pt.x * velocityScale + (Math.random() - 0.5) * 0.09,
+                  vy: pt.y * velocityScale + (Math.random() - 0.5) * 0.09,
+                  alpha: 0.98,
+                  decay: 0.0042 + Math.random() * 0.0018,
+                  size: 1.9 + Math.random() * 0.9,
+                  color: GOLD_PALETTE[Math.floor(Math.random() * GOLD_PALETTE.length)],
+                  twinklePhase: Math.random() * Math.PI * 2,
+                  drag: 0.94,
+                  gravity: 0.006,
+                  isShaped: true,
+                });
+              }
+              return;
+            }
+
+            var count = width >= 640 ? 38 : 28;
+            var baseColor = GOLD_PALETTE[Math.floor(Math.random() * GOLD_PALETTE.length)];
+            for (var k = 0; k < count; k++) {
+              var angle = (Math.PI * 2 * k) / count + (Math.random() - 0.5) * 0.22;
+              var speed = 1.05 + Math.random() * 2.25;
+              sparks.push({
+                x: cx,
+                y: cy,
+                prevX: cx,
+                prevY: cy,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                alpha: 0.94,
+                decay: 0.0048 + Math.random() * 0.0028,
+                size: 1.55 + Math.random() * 1.45,
+                color:
+                  Math.random() > 0.25
+                    ? GOLD_PALETTE[Math.floor(Math.random() * GOLD_PALETTE.length)]
+                    : baseColor,
+                twinklePhase: Math.random() * Math.PI * 2,
+                drag: 0.972,
+                gravity: 0.022,
+                isShaped: false,
+              });
+            }
+
+            for (var j = 0; j < 10; j++) {
+              var a2 = Math.random() * Math.PI * 2;
+              var s2 = 0.35 + Math.random() * 0.95;
+              sparks.push({
+                x: cx,
+                y: cy,
+                prevX: cx,
+                prevY: cy,
+                vx: Math.cos(a2) * s2,
+                vy: Math.sin(a2) * s2,
+                alpha: 0.95,
+                decay: 0.0056 + Math.random() * 0.003,
+                size: 1.8 + Math.random() * 1.1,
+                color: '#ffd700',
+                twinklePhase: Math.random() * Math.PI * 2,
+                drag: 0.968,
+                gravity: 0.02,
+                isShaped: false,
+              });
+            }
+          }
+
+          function getSideCoordinates(side) {
+            var vRect = videoFrameBox ? videoFrameBox.getBoundingClientRect() : null;
+            if (side === 'left') {
+              var maxLeftX =
+                vRect && vRect.left > 70 ? Math.max(48, vRect.left - 36) : Math.max(44, width * 0.14);
+              var minLeftX = Math.min(34, maxLeftX * 0.45);
+              return minLeftX + Math.random() * Math.max(12, maxLeftX - minLeftX);
+            }
+            var minRightX =
+              vRect && width - vRect.right > 70
+                ? Math.min(width - 48, vRect.right + 36)
+                : Math.min(width - 44, width * 0.86);
+            var maxRightX = Math.max(minRightX + 12, width - 34);
+            return minRightX + Math.random() * (maxRightX - minRightX);
+          }
+
+          function launchRocket(side, burstKind) {
+            var startX = getSideCoordinates(side);
+            var targetY =
+              burstKind === 'classic'
+                ? height * (0.12 + Math.random() * 0.46)
+                : height * (0.16 + Math.random() * 0.24);
+            rockets.push({
+              x: startX,
+              y: height + 10,
+              vx: (Math.random() - 0.5) * 0.45,
+              vy: -(3.3 + Math.random() * 1.15),
+              targetY: targetY,
+              color: GOLD_PALETTE[Math.floor(Math.random() * GOLD_PALETTE.length)],
+              burstKind: burstKind || 'classic',
+            });
+          }
+
+          var startTime = performance.now();
+          var lastShapeLaunch = startTime;
+          var lastClassicLaunch = startTime;
+          var lastTriggerSeen = fireworkTrigger;
+          var nextSide = 'left';
+
+          launchRocket('left', shapeSequence[shapeIndex]);
+          shapeIndex = (shapeIndex + 1) % shapeSequence.length;
+          nextSide = 'right';
+          launchRocket('right', 'classic');
+
+          function animate(now) {
+            ctx.clearRect(0, 0, width, height);
+
+            if (fireworkTrigger !== lastTriggerSeen) {
+              lastTriggerSeen = fireworkTrigger;
+              launchRocket('left', 'classic');
+              launchRocket('right', 'classic');
+            }
+
+            if (now - lastShapeLaunch >= 6000) {
+              lastShapeLaunch = now;
+              var nextShape = shapeSequence[shapeIndex];
+              shapeIndex = (shapeIndex + 1) % shapeSequence.length;
+              launchRocket(nextSide, nextShape);
+              nextSide = nextSide === 'left' ? 'right' : 'left';
+            }
+
+            var classicInterval = width >= 1024 ? 1050 : 1250;
+            if (now - lastClassicLaunch >= classicInterval) {
+              lastClassicLaunch = now;
+              var classicSide = Math.random() > 0.5 ? 'left' : 'right';
+              launchRocket(classicSide, 'classic');
+              if (Math.random() > 0.45) {
+                launchRocket(classicSide === 'left' ? 'right' : 'left', 'classic');
+              }
+            }
+
+            for (var i = rockets.length - 1; i >= 0; i--) {
+              var r = rockets[i];
+              var prevX = r.x;
+              var prevY = r.y;
+              r.x += r.vx;
+              r.y += r.vy;
+              r.vy += 0.02;
+
+              ctx.save();
+              ctx.beginPath();
+              ctx.moveTo(prevX, prevY);
+              ctx.lineTo(r.x, r.y);
+              ctx.strokeStyle = 'rgba(255, 198, 20, 0.78)';
+              ctx.lineWidth = 1.9;
+              ctx.shadowColor = 'rgba(255, 208, 0, 0.85)';
+              ctx.shadowBlur = 8;
+              ctx.stroke();
+
+              ctx.beginPath();
+              ctx.arc(r.x, r.y, 2.3, 0, Math.PI * 2);
+              ctx.fillStyle = '#fff9d6';
+              ctx.fill();
+              ctx.restore();
+
+              if (r.y <= r.targetY || r.vy >= -0.45) {
+                createBurst(r.x, r.y, r.burstKind);
+                rockets.splice(i, 1);
+              }
+            }
+
+            for (var j = sparks.length - 1; j >= 0; j--) {
+              var s = sparks[j];
+              s.prevX = s.x;
+              s.prevY = s.y;
+              s.vx *= s.drag;
+              s.vy *= s.drag;
+              s.vy += s.gravity;
+              s.x += s.vx;
+              s.y += s.vy;
+              s.alpha -= s.decay;
+              s.twinklePhase += 0.12;
+
+              if (s.alpha <= 0.02) {
+                sparks.splice(j, 1);
+                continue;
+              }
+
+              var twinkle = 0.78 + 0.22 * Math.sin(s.twinklePhase);
+              var finalAlpha = Math.max(0, Math.min(0.96, s.alpha * twinkle));
+
+              ctx.save();
+              ctx.globalAlpha = finalAlpha;
+              ctx.shadowColor = 'rgba(255, 196, 15, 0.9)';
+              ctx.shadowBlur = s.isShaped ? 12 : 9;
+
+              ctx.beginPath();
+              ctx.moveTo(s.prevX, s.prevY);
+              ctx.lineTo(s.x, s.y);
+              ctx.strokeStyle = s.color;
+              ctx.lineWidth = s.size * 1.08;
+              ctx.lineCap = 'round';
+              ctx.stroke();
+
+              ctx.beginPath();
+              ctx.arc(s.x, s.y, s.size * 0.94, 0, Math.PI * 2);
+              ctx.fillStyle = s.color;
+              ctx.fill();
+
+              ctx.shadowBlur = 0;
+              ctx.beginPath();
+              ctx.arc(s.x, s.y, s.size * 0.44, 0, Math.PI * 2);
+              ctx.fillStyle = '#fffce6';
+              ctx.fill();
+              ctx.restore();
+            }
+
+            if (videoFrameBox) {
+              var vRect = videoFrameBox.getBoundingClientRect();
+              if (vRect.width > 0 && vRect.height > 0) {
+                ctx.clearRect(vRect.left - 4, vRect.top - 4, vRect.width + 8, vRect.height + 8);
+              }
+            }
+
+            window.requestAnimationFrame(animate);
+          }
+
+          window.requestAnimationFrame(animate);
+        })();
+      })();
+    </script>
+  </body>
+</html>

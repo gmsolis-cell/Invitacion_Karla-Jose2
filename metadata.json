@@ -1,0 +1,8 @@
+{
+  "name": "Remix José \u0026 Karla — Invitación Minimal Luxury",
+  "description": "Invitación de boda interactiva con sobre 3D rosa pastel, apertura con campanas y melodía de \u0027Video Games\u0027 de Lana Del Rey, pétalos en cámara lenta, portada, reloj de cuenta regresiva y ubicación con Google Maps y Waze.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
